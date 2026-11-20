@@ -1,0 +1,33 @@
+# Offline demo targets. `pulsecheck demo` binds 127.0.0.1:18765
+# (falls back to :0) and serves /ok 200 and /fail 500.
+targets:
+  - name: api-gateway
+    url: http://127.0.0.1:18765/ok
+    interval_ms: 1000
+    timeout_ms: 800
+    expect_status: 200
+  - name: billing
+    url: http://127.0.0.1:18765/fail
+    interval_ms: 1000
+    timeout_ms: 800
+    expect_status: 200
+  - name: postgres
+    host: 127.0.0.1
+    port: 18765
+    interval_ms: 1500
+    timeout_ms: 500
+  - name: redis
+    host: 127.0.0.1
+    port: 59999
+    interval_ms: 2000
+    timeout_ms: 400
+  - name: metrics
+    url: http://127.0.0.1:18765/ok
+    interval_ms: 2000
+    timeout_ms: 800
+    expect_status: 200
+  - name: dead-http
+    url: http://127.0.0.1:59999/
+    interval_ms: 2000
+    timeout_ms: 300
+    expect_status: 200

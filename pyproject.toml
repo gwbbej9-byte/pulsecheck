@@ -1,0 +1,38 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "pulsecheck"
+version = "0.1.0"
+description = "Asyncio HTTP/TCP health dashboard with a Rich TUI."
+readme = "README.md"
+license = "MIT"
+license-files = ["LICENSE"]
+requires-python = ">=3.11"
+authors = [{ name = "Idris" }]
+dependencies = [
+    "httpx==0.28.1",
+    "rich==13.9.4",
+    "PyYAML==6.0.2",
+    "aiohttp==3.11.11",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest==8.3.4",
+    "pytest-asyncio==0.25.3",
+    "Pillow==11.1.0",
+]
+
+[project.scripts]
+pulsecheck = "pulsecheck.cli:main"
+
+[tool.setuptools.packages.find]
+include = ["pulsecheck"]
+
+[tool.pytest.ini_options]
+asyncio_mode = "auto"
+asyncio_default_fixture_loop_scope = "function"
+testpaths = ["tests"]
+addopts = "-q"
